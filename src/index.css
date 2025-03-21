@@ -1,13 +1,139 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
+.bgContainer {
+  position: fixed; /* Fixes the container to the viewport */
+  top: 0;
+  left: 0;
+  width: 100%; /* Full width */
+  height: 100vh; /* Full height */
+  overflow: hidden; /* Prevents scrolling due to excess content */
+  z-index: -1; /* Ensures it stays behind other content */
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+video {
+  width: 100%; /* Stretch video to cover width */
+  height: 100%; /* Stretch video to cover height */
+  object-fit: cover; /* Ensures the video covers the container */
+  position: absolute; /* Makes stacking possible */
+  top: 0;
+  left: 0;
+}
+
+
+.title {
+  color: white;
+  text-decoration: none;
+
+  
+}
+
+ul{
+  color: white;
+  text-align: center;
+  
+}
+
+.navbar {
+
+  font-family: 'Courier New', Courier, monospace;
+  color: white;
+  
+}
+
+.navbar .nav-link:hover {
+
+  color: blue;
+
+
+}
+
+.fw-light {
+  font-family: 'Times New Roman', Times, serif;
+  margin-right: 6in;
+  font-size: 1in;
+  
+}
+
+.lead text-muted {
+margin-right: 6in;
+font-family: 'Times New Roman', Times, serif;
+
+}
+
+img {
+  width: 600px; /* Sets a fixed width */
+  height: 300px; /* Sets a fixed height */
+}
+
+
+.border-dashed { --bs-border-style: dashed; 
+
+  color: blue; 
+
+
+
+}
+
+.feature-icon {
+  width: 4rem;
+  height: 4rem;
+  border-radius: .75rem;
+}
+
+.icon-square {
+  width: 3rem;
+  height: 3rem;
+  border-radius: .75rem;
+}
+
+.text-shadow-1 { text-shadow: 0 .125rem .25rem rgba(0, 0, 0, .25); }
+.text-shadow-2 { text-shadow: 0 .25rem .5rem rgba(0, 0, 0, .25); }
+.text-shadow-3 { text-shadow: 0 .5rem 1.5rem rgba(0, 0, 0, .25); }
+
+.card-cover {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.feature-icon-small {
+  width: 3rem;
+  height: 3rem;
+
+}
+
+.feature-icon img {
+  width: 50px;
+  height: 50px;
+  
+}
+
+
+.icon-square {
+  width: 50px; /* Fixed size for the icon container */
+  height: 50px; /* Fixed size for the icon container */
+  border-radius: 50%; /* Makes it a circle */
+ 
+}
+
+.icon-img {
+  width: 40px;  /* Size of the image */
+  height: 40px; /* Size of the image */
+  object-fit: contain; /* Ensures the image is scaled without distortion */
+}
+
+.icon-img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.no-bg {
+  background: none !important; /* Removes the background */
+}
+
+/* Custom CSS to remove the background */
+.feature-icon.no-bg {
+  background: transparent !important; /* Removes the background completely */
+  background-color: transparent !important; /* Specifically removes the background color */
+  box-shadow: none !important; /* Removes any box-shadow that might be there */
 }
