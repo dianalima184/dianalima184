@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/dianalima184/static/css/main.f8d9d9a8.css",
+    "main.js": "/dianalima184/static/js/main.47862dcb.js",
+    "static/media/video.mp4": "/dianalima184/static/media/video.f2e9350ad39129f0c5d1.mp4",
+    "static/media/soft.png": "/dianalima184/static/media/soft.4b1ad823b9b4fa039ef9.png",
+    "static/media/chat.png": "/dianalima184/static/media/chat.341f0bd1a4f93bae12e2.png",
+    "static/media/sql.png": "/dianalima184/static/media/sql.ca43e7ff4eed6220566a.png",
+    "static/media/github.png": "/dianalima184/static/media/github.b986a15565e74ccfe0e7.png",
+    "static/media/html.png": "/dianalima184/static/media/html.b2db3a7f6897f0a6e75c.png",
+    "static/media/JS.png": "/dianalima184/static/media/JS.3dfb665e058d08c99f28.png",
+    "index.html": "/dianalima184/index.html",
+    "main.f8d9d9a8.css.map": "/dianalima184/static/css/main.f8d9d9a8.css.map",
+    "main.47862dcb.js.map": "/dianalima184/static/js/main.47862dcb.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f8d9d9a8.css",
+    "static/js/main.47862dcb.js"
+  ]
+}
