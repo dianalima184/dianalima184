@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="icon" href="/assets/555.png" type="image/png">
+    <title>Studio 555</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 3rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 4rem;
+            font-weight: lighter;
+            letter-spacing: 1px;
+            color: #ffffff;
+            font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+
+        .web-studio {
+            position: absolute;
+            top: 1rem;
+            right: 3rem;
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            color: #cccccc;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        nav a {
+            color: #cccccc;
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        nav a:hover {
+            background-color: #000000;
+            color: #ffffff;
+        }
+
+        nav a.active {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 120px;
+        }
+
+        .section {
+            min-height: 100vh;
+            padding: 4rem 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-family:'Times New Roman', Times, serif;
+            font-weight: lighter;
+        }
+
+        .section-content {
+            max-width: 800px;
+            text-align: center;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #e0e0e0;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-color: #000000;
+            text-align: center;
+        }
+
+        .hero-text {
+            max-width: 900px;
+            font-size: 1.3rem;
+            line-height: 1.0;
+            color: #ffffff;
+            margin-bottom: 4rem;
+        }
+
+        /* Inside Studio 555 */
+        .inside-studio {
+            background: linear-gradient(135deg, #000000, #000000);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        .team-member {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+        }
+
+        .team-member h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        .team-member .role {
+            color: #cccccc;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        /* Our Work */
+        .our-work {
+            background-color: #000000;
+        }
+
+        .portfolio-request {
+            background: linear-gradient(135deg, #333333, #1a1a1a);
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 3rem;
+            max-width: 600px;
+        }
+
+        .portfolio-request h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+        }
+
+        .portfolio-request p {
+            font-size: 1.1rem;
+            color: #cccccc;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #ffffff, #e0e0e0);
+            color: #000000;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Expertise */
+        .expertise {
+            background: linear-gradient(135deg, #000000, #000000);
+        }
+
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        .expertise-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .expertise-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .expertise-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .expertise-item p {
+            color: #cccccc;
+            font-size: 0.95rem;
+        }
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, #000000, #000000);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 70% 30%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+        }
+
+        .contact-content {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 3rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            margin-bottom: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: #ffffff;
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: #cccccc;
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .contact-form button {
+            background: linear-gradient(135deg, #ffffff, #e0e0e0);
+            color: #000000;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .contact-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+        }
+
+        .contact-form button:active {
+            transform: translateY(0);
+        }
+
+        .thank-you-message {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: #ffffff;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 1.2rem;
+            box-shadow: 0 15px 35px rgba(76, 175, 80, 0.3);
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Design with a Heart */
+        .design-with-heart {
+            background: linear-gradient(135deg, #000000, #000000);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .design-with-heart::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 70%, rgba(0, 0, 0, 0.1) 0%, transparent 50%);
+        }
+
+        .heart-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .heart-logo {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 2rem;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+            animation: heartbeat 2s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .heart-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 107, 107, 0.2);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ff6b6b;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #cccccc;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .heart-projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid #ff6b6b;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-card h3 {
+            color: #ff6b6b;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .project-card p {
+            color: #cccccc;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .project-impact {
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .heart-cta {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 3rem;
+            max-width: 600px;
+            box-shadow: 0 15px 35px rgba(255, 107, 107, 0.3);
+        }
+
+        .heart-cta h3 {
+            color: #ffffff;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .heart-cta p {
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .heart-button {
+            background: #ffffff;
+            color: #ff6b6b;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .heart-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Blog */
+        .blog {
+            background-color: #000000;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        .blog-post {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .blog-post:hover {
+            transform: translateY(-5px);
+        }
+
+        .blog-post h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .blog-post .date {
+            color: #888888;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .blog-post p {
+            color: #cccccc;
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #000000, #000000);
+            color: white;
+            padding: 50px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        footer h3 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .footer-description {
+            color: #B0B0B0;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #E2E8F0;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #007bff;
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            background: #007bff;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+        }
+
+        .social-links a.instagram:hover { 
+            background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d); 
+        }
+        .social-links a.linkedin:hover { background: #0077b5; }
+
+        .copyright {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #B0B0B0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 1.5rem;
+                gap: 1rem;
+            }
+
+            .logo {
+                font-size: 3rem;
+            }
+
+            .web-studio {
+                position: static;
+                margin-top: 0.5rem;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                gap: 1rem;
+                justify-content: space-around;
+            }
+
+            nav a {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+
+            .section {
+                padding: 2rem 1rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-text {
+                font-size: 1.1rem;
+            }
+
+            main {
+                margin-top: 180px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .hero-text {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+
+            nav a {
+                padding: 0.5rem 1rem;
+                font-size: 0.85rem;
+            }
+
+            main {
+                margin-top: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        
+        <h1 class="logo">STUDIO 555</h1>
+        <nav>
+            <a href="#home" class="active">Home</a>
+            <a href="#inside-studio">Inside Studio 555</a>
+            <a href="#our-work">Our Work</a>
+            <a href="#expertise">Expertise</a>
+            <a href="#design-with-heart">Design with a Heart</a>
+            <a href="#blog">Blog</a>
+        </nav>
+    </header>
+ <div class="scroll-indicator" onclick="scrollToContent()"></div>
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="section hero">
+            <p class="hero-text">
+                Studio 555 is a modern web design agency dedicated to crafting visually immersive digital experiences that elevate and exemplify each brand's identity. We specialize exclusively in web design, delivering tailored, impactful websites that leave a lasting impression.
+            </p>
+        </section>
+
+        <!-- Inside Studio 555 -->
+        <section id="inside-studio" class="section inside-studio">
+            <h2 class="section-title">Inside Studio 555</h2>
+            <div class="section-content">
+                <p>We are a passionate team of designers, developers, and digital strategists who believe that great design has the power to transform businesses and create meaningful connections with audiences.</p>
+                
+                <div class="team-grid">
+                    <div class="team-member">
+                        <h3>Creative Direction</h3>
+                        <p class="role">Visionary Leadership</p>
+                        <p>Our creative directors bring years of experience in crafting brand identities and digital experiences that resonate with audiences and drive results.</p>
+                    </div>
+                    <div class="team-member">
+                        <h3>Design Team</h3>
+                        <p class="role">Visual Storytellers</p>
+                        <p>Our designers combine artistic vision with user experience expertise to create interfaces that are both beautiful and functional.</p>
+                    </div>
+                    <div class="team-member">
+                        <h3>Development Team</h3>
+                        <p class="role">Technical Excellence</p>
+                        <p>Our developers bring designs to life with clean, efficient code and cutting-edge technology to ensure optimal performance.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Work -->
+        <section id="our-work" class="section our-work">
+            <h2 class="section-title">Our Work</h2>
+            <div class="section-content">
+                <div class="portfolio-request">
+                    <h3>View Our Portfolio</h3>
+                    <p>Due to the confidential nature of our client work, we share our portfolio on a case-by-case basis. Request access to see how we've helped brands transform their digital presence.</p>
+                    <a href="#" class="cta-button">Request Portfolio Access</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Expertise -->
+        <section id="expertise" class="section expertise">
+            <h2 class="section-title">Expertise</h2>
+            <div class="section-content">
+                <p>Our comprehensive web design services cover every aspect of digital brand building, from concept to launch and beyond.</p>
+                
+                <div class="expertise-grid">
+                    <div class="expertise-item">
+                        <h3>Brand Identity</h3>
+                        <p>Creating cohesive visual identities that reflect your brand's personality and values across all digital touchpoints.</p>
+                    </div>
+                    <div class="expertise-item">
+                        <h3>Web Design</h3>
+                        <p>Designing responsive, user-centered websites that provide exceptional experiences across all devices and platforms.</p>
+                    </div>
+                    <div class="expertise-item">
+                        <h3>User Experience</h3>
+                        <p>Crafting intuitive user journeys that guide visitors seamlessly from first impression to conversion.</p>
+                    </div>
+                    <div class="expertise-item">
+                        <h3>E-commerce</h3>
+                        <p>Building powerful online stores that not only look great but also drive sales and customer loyalty.</p>
+                    </div>
+                    <div class="expertise-item">
+                        <h3>Performance</h3>
+                        <p>Optimizing websites for speed, accessibility, and search engine visibility to maximize reach and impact.</p>
+                    </div>
+                    <div class="expertise-item">
+                        <h3>Strategy</h3>
+                        <p>Developing comprehensive digital strategies that align with your business goals and target audience needs.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Design with a Heart -->
+        <section id="design-with-heart" class="section design-with-heart">
+            <div class="heart-content">
+                <div class="heart-logo">❤️</div>
+                <h2 class="section-title">Design with a Heart</h2>
+                <div class="section-content">
+                    <p>We believe that great design should serve a greater purpose. Through our "Design with a Heart" initiative, we use our web design expertise to help people in need and organizations making a positive impact in their communities.-COMING SOON</p>
+                    
+         
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Contact Section -->
+        <section id="contact" class="section contact-section">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="section-content">
+                <p>Ready to elevate your brand's digital presence? Let's start a conversation about how we can bring your vision to life.</p>
+                
+                <div class="contact-content">
+                    <form action="https://formsubmit.co/webvex.io@outlook.com" method="POST" class="contact-form" id="contact-form">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
+                        <textarea name="message" placeholder="Tell us about your project..." rows="5" required></textarea>
+                        
+                        <!-- FormSubmit configuration -->
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_next" value="javascript:void(0);">
+                        <input type="hidden" name="_subject" value="New Studio 555 Contact Form Submission">
+                        
+                        <button type="submit">Send Message</button>
+                    </form>
+                    
+                    <div id="thank-you-message" class="thank-you-message" style="display:none;">
+                        <h3>✅ Thank you!</h3>
+                        <p>Your message has been sent successfully. We'll get back to you within 24 hours.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+        <!-- Blog -->
+        <section id="blog" class="section blog">
+            <h2 class="section-title">Blog</h2>
+            <div class="section-content">
+                <p>Stay updated with the latest trends, insights, and thoughts from our team on web design, user experience, and digital strategy.</p>
+                
+                <div class="blog-grid">
+                    <div class="blog-post">
+                        <h3> Top 5 Must-Listen Podcasts for New Entrepreneurs in 2025</h3>
+                        <p class="date">Jun 28, 2025</p>
+                        <p>Exploring emerging trends in web design and how they're shaping okay cool i need to find another wau.</p>
+                       <a href="https://medium.com/@Webvex/top-5-must-listen-podcasts-for-new-entrepreneurs-in-2025-d1e76aa529a7" class="cta-button">Read More</a>
+                    </div>
+                    <div class="blog-post">
+                        <h3>What is Vibe Coding?</h3>
+                        <p class="date">Mar 26, 2025</p>
+                        <p>How embracing minimalist principles can create more impactful and memorable digital experiences.</p>
+                        <a href="https://medium.com/@Webvex/what-is-vibe-coding-42adbe292032" class="cta-button">Read More</a>
+                    </div>
+                    <div class="blog-post">
+                        <h3> Why Your Next Product Should Be Designed by a Designer, Not You</h3>
+                        <p class="date">July 5, 2025</p>
+                        <p>A deep dive into our design methodology and how we put users at the center of every design decision.</p>
+                       <a href="https://medium.com/@Webvex/why-your-next-product-should-be-designed-by-a-designer-not-you-4f5b2c5f3c2b" class="cta-button">Read More</a>
+  
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div>
+                <h3>Studio 555</h3>
+                <p class="footer-description">
+                    A modern web design agency dedicated to crafting visually immersive digital experiences that elevate and exemplify each brand's identity.
+                </p>
+                <div class="social-links">
+                    <a href="#" class="instagram">📷</a>
+                    <a href="#" class="linkedin">💼</a>
+                </div>
+            </div>
+            <div>
+                <h3>Services</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Brand Identity</a></li>
+                    <li><a href="#">Web Design</a></li>
+                    <li><a href="#">User Experience</a></li>
+                    <li><a href="#">E-commerce</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Company</h3>
+                <ul class="footer-links">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Our Process</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Contact</h3>
+                <ul class="footer-links">
+                    <li><a href="#">hello@studio555.com</a></li>
+                    <li><a href="#">+1 (555) 123-4567</a></li>
+                    <li><a href="#">Los Angeles, CA</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 Studio 555. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all links
+                document.querySelectorAll('nav a').forEach(l => l.classList.remove('active'));
+                
+                // Add active class to clicked link
+                this.classList.add('active');
+                
+                // Smooth scroll to section
+                const targetId = this.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Update active navigation based on scroll position
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('.section');
+            const navLinks = document.querySelectorAll('nav a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Portfolio request button
+        document.querySelector('.cta-button').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Thank you for your interest! We will contact you shortly to discuss portfolio access.');
+        });
+        // Heart button functionality
+        document.querySelector('.heart-button').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('This initiative is launching soon! Check back for updates.');
+        });
+    </script>
+</body>
+</html>
