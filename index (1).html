@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diana Lima — Software Engineer Apprenticeship</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:   #0a0a0a;
+      --gray-900:#1a1a1a;
+      --gray-800:#2c2c2c;
+      --gray-700:#444;
+      --gray-500:#888;
+      --gray-300:#ccc;
+      --gray-200:#e5e5e5;
+      --gray-100:#f4f4f4;
+      --white:   #ffffff;
+      --border:  #d6d6d6;
+      --sans: 'IBM Plex Sans', sans-serif;
+      --mono: 'IBM Plex Mono', monospace;
+      --radius: 4px;
+      --radius-lg: 8px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--white);
+      color: var(--black);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 2rem; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    .nav-brand {
+      font-family: var(--mono);
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--black);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 0; list-style: none; }
+    .nav-links a {
+      display: block;
+      padding: 0 1.25rem;
+      height: 60px;
+      line-height: 60px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--gray-500);
+      text-decoration: none;
+      border-left: 1px solid var(--border);
+      transition: color 0.15s, background 0.15s;
+    }
+    .nav-links a:hover { color: var(--black); background: var(--gray-100); }
+    .nav-cta {
+      display: block;
+      padding: 0 1.5rem;
+      height: 60px;
+      line-height: 60px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--white);
+      background: var(--black);
+      text-decoration: none;
+      border-left: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+    .nav-cta:hover { background: var(--gray-800); }
+
+    /* ── HERO ── */
+    .hero {
+      border-bottom: 1px solid var(--border);
+      padding: 6rem 0 5rem;
+    }
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .hero-eyebrow {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 1.75rem;
+    }
+    .eyebrow-line { display: inline-block; width: 32px; height: 1px; background: var(--black); }
+    .eyebrow-text {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray-700);
+    }
+    h1 {
+      font-size: clamp(2.25rem, 4vw, 3.5rem);
+      font-weight: 300;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+    }
+    h1 strong { font-weight: 600; }
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--gray-500);
+      line-height: 1.75;
+      max-width: 500px;
+      margin-bottom: 2.5rem;
+    }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.75rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      font-family: var(--sans);
+      text-decoration: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      border: 1.5px solid transparent;
+      transition: all 0.15s;
+    }
+    .btn-dark { background: var(--black); color: var(--white); border-color: var(--black); }
+    .btn-dark:hover { background: var(--gray-800); }
+    .btn-outline { background: transparent; color: var(--black); border-color: var(--border); }
+    .btn-outline:hover { border-color: var(--black); background: var(--gray-100); }
+
+    /* HERO CARD */
+    .hero-card { border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+    .card-header {
+      background: var(--black); color: var(--white);
+      padding: 1.5rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .avatar {
+      width: 52px; height: 52px; border-radius: 50%;
+      border: 2px solid var(--gray-700); background: var(--gray-800);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--mono); font-size: 1rem; font-weight: 500;
+      color: var(--white); flex-shrink: 0;
+    }
+    .card-header h3 { font-size: 1rem; font-weight: 600; margin-bottom: 2px; }
+    .card-header p { font-size: 0.8rem; color: var(--gray-500); }
+    .card-body { padding: 1.5rem; background: var(--white); }
+    .card-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--gray-200);
+      font-size: 0.875rem;
+    }
+    .card-row:last-child { border-bottom: none; }
+    .card-row .label { color: var(--gray-500); font-family: var(--mono); font-size: 0.78rem; }
+    .card-row .value { font-weight: 500; }
+    .chip-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1.25rem; }
+    .chip {
+      font-family: var(--mono); font-size: 0.75rem;
+      padding: 4px 10px;
+      border: 1px solid var(--border); border-radius: var(--radius);
+      color: var(--gray-700); background: var(--gray-100);
+    }
+
+    /* ── ABOUT ── */
+    .about-section { padding: 5rem 0; border-bottom: 1px solid var(--border); }
+    .section-label {
+      font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--gray-500); margin-bottom: 0.75rem;
+    }
+    h2 {
+      font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+      font-weight: 300; letter-spacing: -0.025em; line-height: 1.25;
+    }
+    h2 strong { font-weight: 600; }
+    .section-header { margin-bottom: 3rem; }
+    .about-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 4rem; }
+    .about-text p { font-size: 0.975rem; color: var(--gray-700); line-height: 1.8; margin-bottom: 1.25rem; }
+    .about-text strong { color: var(--black); font-weight: 600; }
+    .highlight-item {
+      display: flex; gap: 1rem; align-items: flex-start;
+      padding: 1.25rem 0; border-bottom: 1px solid var(--border);
+    }
+    .highlight-item:first-child { border-top: 1px solid var(--border); }
+    .hi-num { font-family: var(--mono); font-size: 0.75rem; color: var(--gray-300); min-width: 24px; padding-top: 2px; }
+    .hi-body h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .hi-body p { font-size: 0.85rem; color: var(--gray-500); line-height: 1.55; }
+
+    /* ── SKILLS ── */
+    .skills-section {
+      background: var(--gray-100);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 5rem 0;
+    }
+    .skills-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; border: 1px solid var(--border);
+      border-radius: var(--radius-lg); overflow: hidden;
+      background: var(--border); margin-top: 2rem;
+    }
+    .skill-cell { background: var(--white); padding: 1.75rem; transition: background 0.15s; }
+    .skill-cell:hover { background: var(--gray-100); }
+    .skill-name { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.35rem; }
+    .skill-desc { font-size: 0.82rem; color: var(--gray-500); line-height: 1.55; margin-bottom: 1rem; }
+    .skill-bar { height: 2px; background: var(--gray-200); border-radius: 100px; overflow: hidden; }
+    .skill-fill { height: 100%; background: var(--black); border-radius: 100px; width: 0; transition: width 1s cubic-bezier(.4,0,.2,1); }
+    .skill-level { font-family: var(--mono); font-size: 0.7rem; color: var(--gray-500); margin-top: 0.5rem; }
+
+    /* ── PROJECTS ── */
+    .projects-section { padding: 5rem 0; border-bottom: 1px solid var(--border); }
+    .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .project-card {
+      border: 1px solid var(--border); border-radius: var(--radius-lg);
+      overflow: hidden; display: flex; flex-direction: column;
+      transition: box-shadow 0.2s;
+    }
+    .project-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.08); }
+    .project-top {
+      background: var(--black); color: var(--white);
+      padding: 1.75rem; flex-shrink: 0;
+    }
+    .project-top .ptag {
+      display: inline-block;
+      font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 4px 10px; border: 1px solid var(--gray-700);
+      border-radius: var(--radius); color: var(--gray-300);
+      background: var(--gray-900); margin-bottom: 1rem;
+    }
+    .project-top h3 { font-size: 1.15rem; font-weight: 600; margin-bottom: 0.5rem; line-height: 1.3; }
+    .project-top p { font-size: 0.85rem; color: var(--gray-500); line-height: 1.6; }
+    .project-bottom { padding: 1.5rem; background: var(--white); flex: 1; display: flex; flex-direction: column; }
+    .feature-list { flex: 1; }
+    .feature-list li {
+      list-style: none; font-size: 0.875rem; color: var(--gray-700);
+      padding: 0.5rem 0; border-bottom: 1px solid var(--gray-200);
+      display: flex; gap: 0.75rem; align-items: baseline; line-height: 1.45;
+    }
+    .feature-list li:last-child { border-bottom: none; }
+    .feature-list li::before { content: '—'; color: var(--gray-300); font-family: var(--mono); font-size: 0.75rem; flex-shrink: 0; }
+    .tech-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1.25rem; }
+    .tech-chip {
+      font-family: var(--mono); font-size: 0.72rem; padding: 3px 9px;
+      border: 1px solid var(--border); border-radius: var(--radius); color: var(--gray-500);
+    }
+    .build-note {
+      margin-top: 1.25rem; padding: 0.75rem 1rem;
+      background: var(--gray-100); border-left: 3px solid var(--black);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      font-family: var(--mono); font-size: 0.75rem; color: var(--gray-700);
+    }
+
+    /* ── WHY AFFIRM ── */
+    .why-section { background: var(--black); color: var(--white); padding: 5rem 0; }
+    .why-section .section-label { color: var(--gray-500); }
+    .why-section h2 { color: var(--white); margin-top: 0.5rem; }
+    .why-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 0; border: 1px solid var(--gray-800);
+      border-radius: var(--radius-lg); overflow: hidden; margin-top: 3rem;
+    }
+    .why-card { padding: 2rem; border-right: 1px solid var(--gray-800); }
+    .why-card:last-child { border-right: none; }
+    .why-num { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.08em; color: var(--gray-700); margin-bottom: 1.25rem; }
+    .why-card h4 { font-size: 0.95rem; font-weight: 600; color: var(--white); margin-bottom: 0.6rem; }
+    .why-card p { font-size: 0.85rem; color: var(--gray-500); line-height: 1.65; }
+
+    /* ── CONTACT ── */
+    .contact-section { padding: 5rem 0; border-bottom: 1px solid var(--border); }
+    .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .contact-desc { font-size: 1rem; color: var(--gray-500); line-height: 1.75; margin-bottom: 2rem; }
+    .contact-links { display: flex; flex-direction: column; border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+    .contact-link-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 1.25rem; border-bottom: 1px solid var(--border);
+      text-decoration: none; color: var(--black);
+      font-size: 0.9rem; font-weight: 500; transition: background 0.15s;
+    }
+    .contact-link-row:last-child { border-bottom: none; }
+    .contact-link-row:hover { background: var(--gray-100); }
+    .contact-link-label { font-family: var(--mono); font-size: 0.72rem; color: var(--gray-500); margin-bottom: 2px; }
+    .arrow { font-family: var(--mono); color: var(--gray-300); font-size: 0.85rem; }
+    .contact-link-row:hover .arrow { color: var(--black); }
+
+    /* ── FOOTER ── */
+    footer { padding: 1.75rem 0; border-top: 1px solid var(--border); }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; }
+    .footer-name { font-family: var(--mono); font-size: 0.8rem; color: var(--gray-500); }
+    .footer-note { font-size: 0.8rem; color: var(--gray-300); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .hero-inner, .about-grid, .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .hero-card { display: none; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .why-grid { grid-template-columns: 1fr; }
+      .why-card { border-right: none; border-bottom: 1px solid var(--gray-800); }
+      .why-card:last-child { border-bottom: none; }
+      .nav-links { display: none; }
+      .footer-inner { flex-direction: column; gap: 0.5rem; text-align: center; }
+      h1 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="nav-brand">diana_lima.dev</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#why">Why Affirm</a></li>
+        <a href="#contact" class="nav-cta">Contact</a>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-eyebrow">
+          <span class="eyebrow-line"></span>
+          <span class="eyebrow-text">Affirm SWE Apprenticeship &mdash; 2026</span>
+        </div>
+        <h1>Building software<br>that <strong>actually helps</strong><br>people.</h1>
+        <p class="hero-desc">
+          CS student, tech support professional, and full-stack developer
+          passionate about making financial tools honest, clear, and
+          accessible &mdash; just like Affirm.
+        </p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-dark">View Projects</a>
+          <a href="#contact" class="btn btn-outline">Get in Touch</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="card-header">
+          <div class="avatar">DL</div>
+          <div>
+            <h3>Diana Lima</h3>
+            <p>Software Engineer Apprenticeship Applicant</p>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-row">
+            <span class="label">Current Role</span>
+            <span class="value">Business Svc. Consultant @ AT&amp;T</span>
+          </div>
+          <div class="card-row">
+            <span class="label">Education</span>
+            <span class="value">CS &mdash; City College</span>
+          </div>
+          <div class="card-row">
+            <span class="label">Stack</span>
+            <span class="value">JavaScript &middot; Python &middot; Full Stack</span>
+          </div>
+          <div class="card-row">
+            <span class="label">Status</span>
+            <span class="value">&#x25CF; Actively Applying</span>
+          </div>
+          <div class="chip-row">
+            <span class="chip">JavaScript</span>
+            <span class="chip">Python</span>
+            <span class="chip">Flask</span>
+            <span class="chip">HTML/CSS</span>
+            <span class="chip">Problem Solving</span>
+            <span class="chip">Fintech</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">About</div>
+      <h2>Real-world experience.<br><strong>Technical ambition.</strong></h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          I'm Diana Lima &mdash; a Computer Science student at City College who works
+          full-time as a <strong>Business Service Consultant at AT&T</strong>.
+          My job is translating complex technical problems into clear solutions
+          for enterprise clients. That same instinct drives my approach to coding.
+        </p>
+        <p>
+          I've built <strong>full-stack applications</strong> using JavaScript
+          on the frontend and Python on the backend. I understand the
+          fundamentals deeply &mdash; loops, variables, data structures, APIs &mdash; and
+          I'm constantly building on that foundation.
+        </p>
+        <p>
+          Affirm's mission &mdash; honest financial products with no hidden fees or
+          surprises &mdash; resonates with everything I believe technology should do.
+          I want to be on the team that builds that.
+        </p>
+      </div>
+      <div>
+        <div class="highlight-item">
+          <span class="hi-num">01</span>
+          <div class="hi-body">
+            <h4>Business Service Consultant &mdash; AT&T</h4>
+            <p>Enterprise tech support, client communication, and systems troubleshooting at scale. Sharpened user empathy and problem-solving under pressure.</p>
+          </div>
+        </div>
+        <div class="highlight-item">
+          <span class="hi-num">02</span>
+          <div class="hi-body">
+            <h4>CS Student &mdash; City College</h4>
+            <p>Studying algorithms, data structures, and software design. Working full-time while maintaining studies shows commitment and resilience.</p>
+          </div>
+        </div>
+        <div class="highlight-item">
+          <span class="hi-num">03</span>
+          <div class="hi-body">
+            <h4>Full Stack Developer &mdash; Self-Directed</h4>
+            <p>Built full-stack web apps using JavaScript and Python. Strong grasp of how frontend and backend systems connect and communicate.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills-section" id="skills">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Skills</div>
+      <h2>What I bring <strong>to the table.</strong></h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-cell">
+        <div class="skill-name">JavaScript</div>
+        <div class="skill-desc">Core language, DOM manipulation, async/await, and interactive frontends.</div>
+        <div class="skill-bar"><div class="skill-fill" data-width="80"></div></div>
+        <div class="skill-level">Advanced &mdash; Primary Language</div>
+      </div>
+      <div class="skill-cell">
+        <div class="skill-name">Python</div>
+        <div class="skill-desc">Backend development, REST APIs, scripting, and Flask applications.</div>
+        <div class="skill-bar"><div class="skill-fill" data-width="65"></div></div>
+        <div class="skill-level">Intermediate &mdash; Backend Focus</div>
+      </div>
+      <div class="skill-cell">
+        <div class="skill-name">HTML &amp; CSS</div>
+        <div class="skill-desc">Semantic markup, responsive layouts, clean and accessible design.</div>
+        <div class="skill-bar"><div class="skill-fill" data-width="78"></div></div>
+        <div class="skill-level">Advanced &mdash; Strong Foundation</div>
+      </div>
+      <div class="skill-cell">
+        <div class="skill-name">CS Fundamentals</div>
+        <div class="skill-desc">Variables, loops, functions, recursion, and data structures from coursework.</div>
+        <div class="skill-bar"><div class="skill-fill" data-width="70"></div></div>
+        <div class="skill-level">Intermediate &mdash; Actively Growing</div>
+      </div>
+      <div class="skill-cell">
+        <div class="skill-name">Technical Support</div>
+        <div class="skill-desc">Enterprise systems diagnosis and clear communication of complex solutions.</div>
+        <div class="skill-bar"><div class="skill-fill" data-width="95"></div></div>
+        <div class="skill-level">Expert &mdash; Professional Experience</div>
+      </div>
+      <div class="skill-cell">
+        <div class="skill-name">Learning Velocity</div>
+        <div class="skill-desc">Studying CS while working full-time. Fast learner, thrives in ambiguous environments.</div>
+        <div class="skill-bar"><div class="skill-fill" data-width="90"></div></div>
+        <div class="skill-level">Exceptional &mdash; Proven Track Record</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects-section" id="projects">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Projects</div>
+      <h2>Built to <strong>show potential.</strong></h2>
+      <p style="color:var(--gray-500);font-size:0.95rem;max-width:520px;margin-top:0.75rem;line-height:1.7;">
+        Two fintech-relevant projects aligned with Affirm's space &mdash; a BNPL calculator and a personal finance tracker.
+      </p>
+    </div>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-top">
+          <span class="ptag">JavaScript &middot; Fintech</span>
+          <h3>PaySplit &mdash; BNPL Calculator</h3>
+          <p>Enter a purchase amount, choose a payment plan, and instantly see a transparent installment breakdown &mdash; inspired by Affirm's core product.</p>
+        </div>
+        <div class="project-bottom">
+          <ul class="feature-list">
+            <li>Real-time installment calculator (4, 6, or 12 payments)</li>
+            <li>Visual payment timeline with due dates</li>
+            <li>Transparent fee breakdown &mdash; no surprises</li>
+            <li>Responsive, mobile-friendly interface</li>
+          </ul>
+          <div class="tech-row">
+            <span class="tech-chip">JavaScript</span>
+            <span class="tech-chip">HTML/CSS</span>
+            <span class="tech-chip">DOM Manipulation</span>
+          </div>
+          <div class="build-note">&#x23F1; ~1 hour to build &middot; Pure JS, no framework required</div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top">
+          <span class="ptag">Python + JS &middot; Full Stack</span>
+          <h3>FinTrack &mdash; Finance Dashboard</h3>
+          <p>Log income and expenses, categorize spending, and view a monthly summary. Python Flask backend with a vanilla JavaScript frontend.</p>
+        </div>
+        <div class="project-bottom">
+          <ul class="feature-list">
+            <li>POST/GET API routes for transactions</li>
+            <li>Frontend dynamically fetches and renders data</li>
+            <li>Category totals and spending summary view</li>
+            <li>Demonstrates full-stack data flow end-to-end</li>
+          </ul>
+          <div class="tech-row">
+            <span class="tech-chip">Python (Flask)</span>
+            <span class="tech-chip">JavaScript</span>
+            <span class="tech-chip">REST API</span>
+            <span class="tech-chip">JSON</span>
+          </div>
+          <div class="build-note">&#x23F1; ~1 hour to build &middot; Flask + Vanilla JS</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHY AFFIRM -->
+<section class="why-section" id="why">
+  <div class="container">
+    <div class="section-label">Why Affirm</div>
+    <h2>This isn't just an application.<br><strong>It's a fit.</strong></h2>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-num">01 / MISSION</div>
+        <h4>The mission matters to me</h4>
+        <p>Honest, transparent financial products aren't just good business &mdash; they change lives. I've seen how confusing financial tools hurt everyday people. Affirm is actively fixing that.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">02 / EMPATHY</div>
+        <h4>User empathy built in</h4>
+        <p>Years in tech support at AT&T taught me to translate complex problems into clear solutions. That user-first perspective is exactly what growing engineering teams need.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">03 / GROWTH</div>
+        <h4>I thrive in apprenticeship culture</h4>
+        <p>I work full-time while studying CS. Apprenticeships reward people who learn fast, work hard, and show up. Give me the environment and mentorship &mdash; I will deliver the growth.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <div>
+        <div class="section-label">Contact</div>
+        <h2>Let's talk about<br><strong>what I can build.</strong></h2>
+        <p class="contact-desc">
+          I'm actively applying to Affirm's Software Engineer Apprenticeship.
+          I'd love to connect, answer questions, or just have a conversation
+          about what I can bring to your team.
+        </p>
+        <a href="mailto:YOUR_EMAIL@gmail.com" class="btn btn-dark">Send Me an Email</a>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:YOUR_EMAIL@gmail.com" class="contact-link-row">
+          <div>
+            <div class="contact-link-label">Email</div>
+            <div>YOUR_EMAIL@gmail.com</div>
+          </div>
+          <span class="arrow">&#x2192;</span>
+        </a>
+        <a href="https://github.com/YOUR_USERNAME" target="_blank" class="contact-link-row">
+          <div>
+            <div class="contact-link-label">GitHub</div>
+            <div>github.com/YOUR_USERNAME</div>
+          </div>
+          <span class="arrow">&#x2192;</span>
+        </a>
+        <a href="https://linkedin.com/in/YOUR_PROFILE" target="_blank" class="contact-link-row">
+          <div>
+            <div class="contact-link-label">LinkedIn</div>
+            <div>linkedin.com/in/YOUR_PROFILE</div>
+          </div>
+          <span class="arrow">&#x2192;</span>
+        </a>
+        <a href="YOUR_RESUME_LINK" target="_blank" class="contact-link-row">
+          <div>
+            <div class="contact-link-label">Resume</div>
+            <div>Download PDF</div>
+          </div>
+          <span class="arrow">&#x2193;</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <span class="footer-name">diana_lima.dev</span>
+      <span class="footer-note">Affirm Software Engineer Apprenticeship &middot; 2026</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Animate skill bars when scrolled into view
+  const fills = document.querySelectorAll('.skill-fill');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        fills.forEach((el, i) => {
+          setTimeout(() => { el.style.width = el.dataset.width + '%'; }, i * 80);
+        });
+        observer.disconnect();
+      }
+    });
+  }, { threshold: 0.2 });
+  const skillsSection = document.querySelector('.skills-section');
+  if (skillsSection) observer.observe(skillsSection);
+
+  // Nav active state on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 80) current = s.id; });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--black)' : '';
+    });
+  });
+</script>
+</body>
+</html>
